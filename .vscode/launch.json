@@ -1,0 +1,104 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chapter01 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch01",
+      "program": "${workspaceFolder}/playground/Chapter01/bin/Debug/net10.0/Chapter01.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter01",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter02 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch02",
+      "program": "${workspaceFolder}/playground/Chapter02/bin/Debug/net10.0/Chapter02.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter02",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter03 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch03",
+      "program": "${workspaceFolder}/playground/Chapter03/bin/Debug/net10.0/Chapter03.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter03",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter04 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch04",
+      "program": "${workspaceFolder}/playground/Chapter04/bin/Debug/net10.0/Chapter04.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter04",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter05 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch05",
+      "program": "${workspaceFolder}/playground/Chapter05/bin/Debug/net10.0/Chapter05.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter05",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter06 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch06",
+      "program": "${workspaceFolder}/playground/Chapter06/bin/Debug/net10.0/Chapter06.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter06",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter07 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch07",
+      "program": "${workspaceFolder}/playground/Chapter07/bin/Debug/net10.0/Chapter07.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter07",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter08 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch08",
+      "program": "${workspaceFolder}/playground/Chapter08/bin/Debug/net10.0/Chapter08.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter08",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Chapter09 Playground",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-playground-ch09",
+      "program": "${workspaceFolder}/playground/Chapter09/bin/Debug/net10.0/Chapter09.Playground.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/playground/Chapter09",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}

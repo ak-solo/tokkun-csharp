@@ -1,0 +1,68 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-playground-ch01",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter01"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch02",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter02"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch03",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter03"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch04",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter04"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch05",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter05"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch06",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter06"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch07",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter07"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch08",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter08"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-playground-ch09",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/playground/Chapter09"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

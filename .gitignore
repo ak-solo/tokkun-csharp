@@ -1,0 +1,40 @@
+# .NET ビルド成果物
+bin/
+obj/
+out/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.assets.json
+
+# テスト結果
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Visual Studio / VSCode
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Linux
+*~
