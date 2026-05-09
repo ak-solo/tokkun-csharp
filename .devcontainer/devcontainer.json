@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "shutdownAction": "stopContainer",
   "postCreateCommand": "dotnet restore && dotnet tool install -g csharprepl",
   "customizations": {
     "vscode": {
