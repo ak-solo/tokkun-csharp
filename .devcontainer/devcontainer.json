@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "dotnet restore",
+  "postCreateCommand": "dotnet restore && dotnet tool install -g csharprepl",
   "customizations": {
     "vscode": {
       "extensions": [
