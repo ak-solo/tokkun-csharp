@@ -151,3 +151,77 @@ dotnet test
 
 - ターミナルが Dev Container 内で動いているか確認する（VSCode 左下に「Dev Container: tokkun-csharp」と表示されていれば OK）
 - コンテナを再ビルドする: コマンドパレットで `Dev Containers: Rebuild Container` を実行する
+
+---
+
+## csharprepl — 対話型 C# 実行環境
+
+コンテナ内には **csharprepl** がインストールされています。式やコードをその場で実行して結果をすぐに確認できるツールです。
+
+### 起動・終了
+
+```bash
+csharprepl   # 起動
+```
+
+```bash
+exit         # 終了（Ctrl+D でも可）
+```
+
+### 基本的な使い方
+
+式を入力して Enter を押すと、即座に結果が表示されます。
+
+```csharp
+> 2 + 3
+5
+
+> "Hello".ToUpper()
+"HELLO"
+
+> Math.Pow(2, 10)
+1024
+```
+
+### using を追加する
+
+```csharp
+> using System.Linq;
+> Enumerable.Range(1, 10).Where(x => x % 2 == 0).ToList()
+List<int>(5) { 2, 4, 6, 8, 10 }
+```
+
+### 複数行のコードを書く
+
+`{` で改行すると複数行モードになります。
+
+```csharp
+> for (int i = 1; i <= 5; i++)
+. {
+.     Console.WriteLine(i);
+. }
+1
+2
+3
+4
+5
+```
+
+### 自分の実装を読み込んで試す
+
+`#load` で `src/` のファイルを読み込めます。実装したメソッドをその場で動かして確認できます。
+
+```csharp
+> #load "src/Chapter01/Exercises.cs"
+> var ex = new Exercises();
+> ex.Problem1_1()
+```
+
+### キーボードショートカット
+
+| キー | 動作 |
+|---|---|
+| `↑` / `↓` | 入力履歴の移動 |
+| `Tab` | 補完候補を表示 |
+| `Ctrl+C` | 入力をキャンセル |
+| `Ctrl+D` | 終了 |
