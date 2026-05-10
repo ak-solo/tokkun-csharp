@@ -126,14 +126,26 @@ public class Chapter03Tests
     // --- 問題 3-9 ---
     [Theory]
     [InlineData(0, 0, "休診")]   // 日曜 午前
+    [InlineData(0, 1, "休診")]   // 日曜 午後
+    [InlineData(0, 2, "休診")]   // 日曜 夜間
     [InlineData(1, 0, "○")]     // 月曜 午前
+    [InlineData(1, 1, "○")]     // 月曜 午後
+    [InlineData(1, 2, "○")]     // 月曜 夜間
     [InlineData(2, 0, "休診")]  // 火曜 午前
     [InlineData(2, 1, "○")]     // 火曜 午後
+    [InlineData(2, 2, "○")]     // 火曜 夜間
+    [InlineData(3, 0, "○")]     // 水曜 午前
+    [InlineData(3, 1, "○")]     // 水曜 午後
     [InlineData(3, 2, "休診")]  // 水曜 夜間
+    [InlineData(4, 0, "○")]     // 木曜 午前
+    [InlineData(4, 1, "○")]     // 木曜 午後
+    [InlineData(4, 2, "○")]     // 木曜 夜間
     [InlineData(5, 0, "休診")]  // 金曜 午前
     [InlineData(5, 1, "○")]     // 金曜 午後
+    [InlineData(5, 2, "○")]     // 金曜 夜間
     [InlineData(6, 0, "○")]     // 土曜 午前
     [InlineData(6, 1, "休診")]  // 土曜 午後
+    [InlineData(6, 2, "休診")]  // 土曜 夜間
     public void Test_3_9_Hospital(int dayOfWeek, int timeOfDay, string expected)
     {
         Assert.Equal(expected, Exercises.Problem3_9(dayOfWeek, timeOfDay));

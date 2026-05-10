@@ -62,6 +62,8 @@ public class Chapter04Tests
 
     // --- 問題 4-8 ---
     [Theory]
+    [InlineData(1, false)]
+    [InlineData(2, true)]
     [InlineData(7, true)]
     [InlineData(13, true)]
     [InlineData(4, false)]
