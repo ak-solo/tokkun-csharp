@@ -2,10 +2,49 @@
 
 ## 基礎知識
 
+### 継承とは
+
+7 章では 1 つのクラスを設計しました。しかし複数のクラスが共通のデータや操作を持つことはよくあります。
+
+たとえば `Cat` クラスと `Dog` クラスを別々に作ると、`Name`・`Age` プロパティや `ShowProfile()` メソッドを両方に書かなければなりません。
+
+```csharp
+// 同じコードを二か所に書くのは非効率
+public class Cat
+{
+    public string Name { get; set; }
+    public int    Age  { get; set; }
+    public string ShowProfile() { ... }
+    public string Sleep() { ... }  // Cat 固有
+}
+
+public class Dog
+{
+    public string Name { get; set; }        // Cat と全く同じ
+    public int    Age  { get; set; }        // Cat と全く同じ
+    public string ShowProfile() { ... }     // Cat と全く同じ
+    public string Run() { ... }   // Dog 固有
+}
+```
+
+**継承**を使うと、共通部分を**基底クラス（親クラス）**に一か所だけ書き、各クラス固有の部分だけを**派生クラス（子クラス）**に追加できます。
+
+```
+        Animal（基底クラス）
+        Name, Age, ShowProfile()
+           ↙            ↘
+    Cat（派生）       Dog（派生）
+    Sleep()          Run()
+```
+
+この関係を「Cat は Animal の一種（Cat is-a Animal）」と表現します。継承が自然に使えるのは、この「is-a 関係」が成立するときです。
+
+---
+
 ### 継承（:）
 
 既存のクラスを**基底クラス（親クラス）**として、その機能を引き継ぐ新しいクラスを作れます。
-これを**継承**といい、C# では `: 基底クラス名` で宣言します。
+これを**継承**といい、C# では `: 基底クラス名` で宣言します。派生クラスは基底クラスのプロパティ・メソッドをそのまま使えます。
 
 ```csharp
 public class Animal
@@ -23,7 +62,7 @@ public class Cat : Animal
 
 ```csharp
 var cat = new Cat();
-cat.Name = "タマ";         // Animal のプロパティを Cat でも使える
+cat.Name = "タマ";          // Animal のプロパティを Cat でも使える
 Console.WriteLine(cat.Name);
 Console.WriteLine(cat.Sleep());
 ```
@@ -32,7 +71,7 @@ Console.WriteLine(cat.Sleep());
 
 ### コンストラクタと base()
 
-派生クラスのコンストラクタでは、`base(...)` で基底クラスのコンストラクタを呼び出します。
+派生クラスのコンストラクタでは、`base(...)` で基底クラスのコンストラクタを呼び出します。`base` は基底クラス自身を指すキーワードです。
 
 ```csharp
 public class Animal
@@ -50,47 +89,53 @@ public class Cat : Animal
 {
     public Cat(string name, int age) : base(name, age)
     {
-        // base(name, age) で Animal のコンストラクタを呼ぶ
+        // base(name, age) で Animal のコンストラクタに処理を委ねる
     }
 }
 ```
 
 ```csharp
-var cat = new Cat("タマ", 2);  // name="タマ"、age=2 で初期化
+var cat = new Cat("タマ", 2);
+Console.WriteLine(cat.Name);  // → "タマ"（Animal のコンストラクタが設定した）
 ```
 
 ---
 
 ### オーバーライド（override / virtual）
 
-基底クラスのメソッドを派生クラスで**上書き**できます。
+基底クラスのメソッドを派生クラスで**上書き**することを**オーバーライド**といいます。
 
-- 基底クラスのメソッドに `virtual` を付ける
-- 派生クラスのメソッドに `override` を付ける
+- 基底クラス側: 上書きを許可するメソッドに `virtual` を付ける
+- 派生クラス側: 上書きするメソッドに `override` を付ける
 
 ```csharp
 public class Animal
 {
-    public virtual string Speak() => "......";  // デフォルトの鳴き声
+    public virtual string Speak() => "......";  // デフォルトの実装
 }
 
 public class Cat : Animal
 {
-    public override string Speak() => "ニャー";  // Cat 専用の鳴き声
+    public override string Speak() => "ニャー";  // Cat 専用の実装で上書き
 }
 
 public class Dog : Animal
 {
-    public override string Speak() => "ワンワン";  // Dog 専用の鳴き声
+    public override string Speak() => "ワンワン";  // Dog 専用の実装で上書き
 }
 ```
 
+> **オーバーライドとオーバーロードの違い:**
+> - **オーバーライド（override）:** 継承関係にある親のメソッドを子で上書きする（同じ名前・同じ引数）
+> - **オーバーロード:** 同じクラス内に引数が異なる同名メソッドを複数定義する
+
 ---
 
-### ポリモーフィズム
+### ポリモーフィズム（多態性）
 
-基底クラス型の変数に、派生クラスのインスタンスを代入できます。
-メソッドを呼び出すと、**実際のインスタンスの型**に応じたメソッドが実行されます。
+**ポリモーフィズム**とは「同じ操作を型によって異なる動作にできる」性質です。
+
+基底クラス型の変数に派生クラスのインスタンスを代入できます。メソッドを呼び出すと、変数の型（`Animal`）ではなく**実際のインスタンスの型**（`Cat` や `Dog`）に応じたメソッドが実行されます。
 
 ```csharp
 Animal[] animals =
@@ -106,8 +151,17 @@ foreach (Animal a in animals)
 }
 ```
 
-`animals` の型は `Animal[]` ですが、実行時には Cat や Dog それぞれの `Speak` が呼ばれます。
-これが**ポリモーフィズム（多態性）**です。
+ポリモーフィズムの強みは、**新しい動物クラスを追加してもループのコードを変えなくてよい**点です。
+
+```csharp
+// Bird クラスを追加しても、上のループはそのまま動く
+public class Bird : Animal
+{
+    public override string Speak() => "チュンチュン";
+}
+```
+
+ポリモーフィズムがない場合は、型ごとに `if` で分岐するコードを書かなければならず、種類が増えるたびに修正が必要になります。
 
 ---
 
