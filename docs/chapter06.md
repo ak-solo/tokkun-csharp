@@ -19,7 +19,10 @@ int a2 = 5 * 5;
 int a3 = 7 * 7;
 
 // メソッドあり → 一か所で定義して何度でも呼び出す
-static int Square(int n) => n * n;
+static int Square(int n)
+{
+    return n * n;
+}
 
 int a1 = Square(3);
 int a2 = Square(5);
@@ -196,9 +199,15 @@ if (IsEven(x) && IsEven(y))
 **解答例:** `Square` という名前でヘルパーメソッドを定義し、`Problem6_1` から呼び出します。
 
 ```csharp
-private static int Square(int n) => n * n;
+private static int Square(int n)
+{
+    return n * n;
+}
 
-public static int Problem6_1(int n) => Square(n);
+public static int Problem6_1(int n)
+{
+    return Square(n);
+}
 ```
 
 ---
