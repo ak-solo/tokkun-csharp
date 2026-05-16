@@ -122,8 +122,14 @@ do
 ```csharp
 for (int i = 1; i <= 10; i++)
 {
-    if (i == 6) break;          // 6 に達したらループ終了
-    if (i % 2 == 0) continue;  // 偶数はスキップ
+    if (i == 6)
+    {
+        break;  // 6 に達したらループ終了
+    }
+    if (i % 2 == 0)
+    {
+        continue;  // 偶数はスキップ
+    }
     Console.WriteLine(i);       // 1, 3, 5
 }
 ```
@@ -148,7 +154,10 @@ string result = "";  // 空文字列で初期化
 for (int i = 1; i <= 5; i++)
 {
     result += i.ToString();  // 末尾に追加
-    if (i < 5) result += ",";
+    if (i < 5)
+    {
+        result += ",";
+    }
 }
 
 Console.WriteLine(result);  // → "1,2,3,4,5"
@@ -180,8 +189,14 @@ int min = numbers[0];  // 最小（先頭値で初期化）
 foreach (int n in numbers)
 {
     sum += n;
-    if (n > max) max = n;
-    if (n < min) min = n;
+    if (n > max)
+    {
+        max = n;
+    }
+    if (n < min)
+    {
+        min = n;
+    }
 }
 // sum=26, max=9, min=1
 ```

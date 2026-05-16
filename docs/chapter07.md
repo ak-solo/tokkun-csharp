@@ -81,7 +81,13 @@ public class Dog
 public int Age
 {
     get { return mAge; }
-    set { if (value >= 0) mAge = value; }  // 負の値は無視する
+    set
+    {
+        if (value >= 0)
+        {
+            mAge = value;  // 負の値は無視する
+        }
+    }
 }
 ```
 

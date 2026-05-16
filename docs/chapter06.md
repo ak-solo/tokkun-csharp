@@ -115,8 +115,10 @@ static int CalcTax(int price)
 static int Max(int a, int b)
 {
     if (a >= b)
+    {
         return a;  // ここで return するとこの行以降は実行されない
-    return b;      // a < b のときだけここに到達する
+    }
+    return b;  // a < b のときだけここに到達する
 }
 ```
 
