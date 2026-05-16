@@ -46,14 +46,14 @@ try
     Console.WriteLine(dog3.ShowProfile());
 
     string[] breeds = { "柴犬", "トイプードル", "ゴールデンレトリバー" };
-    string[] names  = { "ポチ", "モコ", "ゴールド" };
-    int[]    ages   = { 3, 1, 5 };
+    string[] names = { "ポチ", "モコ", "ゴールド" };
+    int[] ages = { 3, 1, 5 };
 
     for (int i = 0; i < 3; i++)
     {
         var d = new Dog(breeds[i]);
         d.Name = names[i];
-        d.Age  = ages[i];
+        d.Age = ages[i];
         Console.WriteLine(d.ShowProfile());
     }
 }
@@ -67,10 +67,10 @@ try
     var cc = new CoinCase();
     cc.AddCoins(500, 1);
     cc.AddCoins(100, 2);
-    cc.AddCoins(50,  3);
-    cc.AddCoins(10,  4);
-    cc.AddCoins(5,   5);
-    cc.AddCoins(1,   6);
+    cc.AddCoins(50, 3);
+    cc.AddCoins(10, 4);
+    cc.AddCoins(5, 5);
+    cc.AddCoins(1, 6);
 
     foreach (int d in new[] { 500, 100, 50, 10, 5, 1 })
         Console.WriteLine($"{d,4}円: {cc.GetCount(d),3}枚");
@@ -86,7 +86,7 @@ try
     var cc2 = new CoinCase();
     cc2.AddCoins(500, 2);
     cc2.AddCoins(100, 5);
-    cc2.AddCoins(10,  3);
+    cc2.AddCoins(10, 3);
 
     Console.WriteLine($"合計枚数: {cc2.GetCount()}枚");
     Console.WriteLine($"500円の合計: {cc2.GetAmount(500)}円");

@@ -164,40 +164,40 @@ public class Chapter06Tests
     [Fact]
     public void Test_6_9_SortBasic()
     {
-        int[] arr = {5, 3, 8, 1, 9, 2};
+        int[] arr = { 5, 3, 8, 1, 9, 2 };
         Exercises.Problem6_9(arr);
-        Assert.Equal(new[] {1, 2, 3, 5, 8, 9}, arr);
+        Assert.Equal(new[] { 1, 2, 3, 5, 8, 9 }, arr);
     }
 
     [Fact]
     public void Test_6_9_AlreadySorted()
     {
-        int[] arr = {1, 2, 3};
+        int[] arr = { 1, 2, 3 };
         Exercises.Problem6_9(arr);
-        Assert.Equal(new[] {1, 2, 3}, arr);
+        Assert.Equal(new[] { 1, 2, 3 }, arr);
     }
 
     [Fact]
     public void Test_6_9_ReverseOrder()
     {
-        int[] arr = {9, 7, 5, 3, 1};
+        int[] arr = { 9, 7, 5, 3, 1 };
         Exercises.Problem6_9(arr);
-        Assert.Equal(new[] {1, 3, 5, 7, 9}, arr);
+        Assert.Equal(new[] { 1, 3, 5, 7, 9 }, arr);
     }
 
     [Fact]
     public void Test_6_9_SingleElement()
     {
-        int[] arr = {42};
+        int[] arr = { 42 };
         Exercises.Problem6_9(arr);
-        Assert.Equal(new[] {42}, arr);
+        Assert.Equal(new[] { 42 }, arr);
     }
 
     [Fact]
     public void Test_6_9_WithDuplicates()
     {
-        int[] arr = {3, 1, 4, 1, 5, 9, 2, 6};
+        int[] arr = { 3, 1, 4, 1, 5, 9, 2, 6 };
         Exercises.Problem6_9(arr);
-        Assert.Equal(new[] {1, 1, 2, 3, 4, 5, 6, 9}, arr);
+        Assert.Equal(new[] { 1, 1, 2, 3, 4, 5, 6, 9 }, arr);
     }
 }

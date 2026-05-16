@@ -130,7 +130,7 @@ public class Chapter07Tests
     public void Test_7_5_InitialCountIsZero()
     {
         var cc = new CoinCase();
-        foreach (int d in new[] {500, 100, 50, 10, 5, 1})
+        foreach (int d in new[] { 500, 100, 50, 10, 5, 1 })
             Assert.Equal(0, cc.GetCount(d));
     }
 

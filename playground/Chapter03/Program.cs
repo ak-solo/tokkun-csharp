@@ -44,7 +44,7 @@ catch (NotImplementedException)
 try
 {
     int midterm = 50;   // ← 変えて試そう
-    int final_  = 90;   // ← 変えて試そう
+    int final_ = 90;   // ← 変えて試そう
     Console.WriteLine($"中間:{midterm} 期末:{final_} → {Exercises.Problem3_8(midterm, final_)}");
 }
 catch (NotImplementedException)
@@ -54,7 +54,7 @@ catch (NotImplementedException)
 
 try
 {
-    string[] days  = { "日", "月", "火", "水", "木", "金", "土" };
+    string[] days = { "日", "月", "火", "水", "木", "金", "土" };
     string[] times = { "午前", "午後", "夜間" };
     Console.Write("     ");
     foreach (string d in days) Console.Write($"{d}  ");
