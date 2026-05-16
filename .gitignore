@@ -39,5 +39,8 @@ $RECYCLE.BIN/
 ## Linux
 *~
 
+# CSharpRepl
+.csharprepl/
+
 # Claude Code
 .claude/settings.local.json
