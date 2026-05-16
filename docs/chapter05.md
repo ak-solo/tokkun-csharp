@@ -162,34 +162,43 @@ for (int i = 0; i < 3; i++)
 2次元配列が「行と列が固定されたグリッド」なら、**ジャグ配列**は「各行の長さが異なってもよい配列の配列」です。型は `型名[][]` と書きます。
 
 ```
-numbers[0] → { 2, 4, 6 }     ← 偶数だけ
-numbers[1] → { 1, 3, 5, 7 }  ← 奇数だけ（長さが違ってもよい）
+triangle[0] → { 1 }          ← 1 列
+triangle[1] → { 1, 2 }       ← 2 列
+triangle[2] → { 1, 2, 3 }    ← 3 列（長さが違ってもよい）
 ```
 
 外側の配列を先に宣言し、各要素に内側の配列を代入して使います。
 
 ```csharp
-int[][] result = new int[2][];  // 外側：2 行分のスロット
-result[0] = new int[] { 2, 4, 6 };
-result[1] = new int[] { 1, 3, 5, 7 };
+int[][] triangle = new int[3][];  // 外側：3 行分のスロット
+triangle[0] = new int[] { 1 };
+triangle[1] = new int[] { 1, 2 };
+triangle[2] = new int[] { 1, 2, 3 };
 
-Console.WriteLine(result[0][1]);  // → 4（0 行目の 1 番目）
-Console.WriteLine(result[1][0]);  // → 1（1 行目の 0 番目）
+Console.WriteLine(triangle[1][1]);  // → 2（1 行目の 1 番目）
+Console.WriteLine(triangle[2][0]);  // → 1（2 行目の 0 番目）
 ```
 
 `List<int>` で要素を収集してから `.ToArray()` で変換すると、長さが事前に決まらなくても扱いやすいです。
 
 ```csharp
-var evens = new List<int>();
-var odds  = new List<int>();
-foreach (int n in new[] { 1, 2, 3, 4, 5 })
+var small = new List<int>();
+var large = new List<int>();
+foreach (int n in new[] { 3, 7, 1, 9, 4 })
 {
-    if (n % 2 == 0) evens.Add(n); else odds.Add(n);
+    if (n < 5)
+    {
+        small.Add(n);
+    }
+    else
+    {
+        large.Add(n);
+    }
 }
 
 int[][] result = new int[2][];
-result[0] = evens.ToArray();  // { 2, 4 }
-result[1] = odds.ToArray();   // { 1, 3, 5 }
+result[0] = small.ToArray();  // { 3, 1, 4 }
+result[1] = large.ToArray();  // { 7, 9 }
 ```
 
 ---
@@ -202,7 +211,10 @@ result[1] = odds.ToArray();   // { 1, 3, 5 }
 var evens = new List<int>();  // 空のリストを作成
 foreach (int n in new[] { 1, 2, 3, 4, 5, 6 })
 {
-    if (n % 2 == 0) evens.Add(n);  // 条件を満たすものだけ追加
+    if (n % 2 == 0)
+    {
+        evens.Add(n);  // 条件を満たすものだけ追加
+    }
 }
 int[] result = evens.ToArray();  // 配列に変換 → { 2, 4, 6 }
 ```
