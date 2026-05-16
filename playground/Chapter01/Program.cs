@@ -36,41 +36,28 @@ catch (NotImplementedException)
 
 try
 {
-    int x9 = 3;   // ← この値を変えて実行してみよう
-    Console.WriteLine($"{x9} の 2 倍・3 倍・4 倍: {Exercises.Problem1_9(x9)}");
+    Console.WriteLine(Exercises.Problem1_7());
 }
 catch (NotImplementedException)
 {
-    Console.WriteLine("  [未実装] 問題 1-9");
+    Console.WriteLine("  [未実装] 問題 1-7");
 }
 
 try
 {
-    int x10 = 2;   // ← この値を変えて実行してみよう
-    Console.WriteLine($"{x10} の 1 乗・2 乗・3 乗: {Exercises.Problem1_10(x10)}");
+    Console.WriteLine($"19 * 23 = {Exercises.Problem1_8()}");
 }
 catch (NotImplementedException)
 {
-    Console.WriteLine("  [未実装] 問題 1-10");
+    Console.WriteLine("  [未実装] 問題 1-8");
 }
 
 try
 {
-    Console.WriteLine($"10 / 3  = {Exercises.Problem1_11()} （double）");
-    Console.WriteLine($"10 / 3  = {Exercises.Problem1_12()} （int）");
+    Console.WriteLine($"10 / 3  = {Exercises.Problem1_9()} （double）");
+    Console.WriteLine($"10 / 3  = {Exercises.Problem1_10()} （int）");
 }
 catch (NotImplementedException)
 {
-    Console.WriteLine("  [未実装] 問題 1-11 〜 1-12");
-}
-
-try
-{
-    int x13 = 17;  // ← 変えて試そう（x > y であること）
-    int y13 = 5;   // ← 変えて試そう
-    Console.WriteLine($"{x13} ÷ {y13} の（商,余り）: {Exercises.Problem1_13(x13, y13)}");
-}
-catch (NotImplementedException)
-{
-    Console.WriteLine("  [未実装] 問題 1-13");
+    Console.WriteLine("  [未実装] 問題 1-9 〜 1-10");
 }

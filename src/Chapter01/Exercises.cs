@@ -48,33 +48,15 @@ public class Exercises
         throw new NotImplementedException("問題 1-8 を実装してください");
     }
 
-    // 問題 1-9: x を 2 倍・3 倍・4 倍した結果をカンマ区切りの文字列で返す
-    public static string Problem1_9(int x)
+    // 問題 1-9: int 変数 x=10, y=3 を宣言し、x / y の結果（double）を返す
+    public static double Problem1_9()
     {
         throw new NotImplementedException("問題 1-9 を実装してください");
     }
 
-    // 問題 1-10: x の 1 乗・2 乗・3 乗をカンマ区切りの文字列で返す
-    public static string Problem1_10(int x)
+    // 問題 1-10: 10 / 3 の整数除算の結果を int 変数に代入して返す
+    public static int Problem1_10()
     {
         throw new NotImplementedException("問題 1-10 を実装してください");
-    }
-
-    // 問題 1-11: int 変数 x=10, y=3 を宣言し、x / y の結果（double）を返す
-    public static double Problem1_11()
-    {
-        throw new NotImplementedException("問題 1-11 を実装してください");
-    }
-
-    // 問題 1-12: 10 / 3 の整数除算の結果を int 変数に代入して返す
-    public static int Problem1_12()
-    {
-        throw new NotImplementedException("問題 1-12 を実装してください");
-    }
-
-    // 問題 1-13: x を y で割った商と余りをカンマ区切りの文字列で返す
-    public static string Problem1_13(int x, int y)
-    {
-        throw new NotImplementedException("問題 1-13 を実装してください");
     }
 }
