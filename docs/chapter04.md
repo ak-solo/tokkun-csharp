@@ -146,7 +146,7 @@ i = 6 → break → ループ終了
 
 ### 文字列の結合とループ
 
-ループ内で結果を文字列に積み上げていくパターンはよく使います。`+=` は文字列を末尾に追加する演算子です。
+ループ内で結果を文字列に積み上げていくパターンはよく使います。`+=` は文字列を末尾に追加する演算子で、`result += "x"` は `result = result + "x"` の短縮形です。
 
 ```csharp
 string result = "";  // 空文字列で初期化
@@ -161,17 +161,6 @@ for (int i = 1; i <= 5; i++)
 }
 
 Console.WriteLine(result);  // → "1,2,3,4,5"
-```
-
-`string.Join` を使うとさらに簡潔に書けます。
-
-```csharp
-var items = new List<string>();
-for (int i = 1; i <= 5; i++)
-{
-    items.Add(i.ToString());
-}
-string result = string.Join(",", items);  // → "1,2,3,4,5"
 ```
 
 ---
@@ -233,11 +222,10 @@ for (int i = 1; i <= 3; i++)
 複数行の文字列を返すときは `Environment.NewLine` で改行を挟みます。
 
 ```csharp
-var lines = new List<string>();
-lines.Add("1行目");
-lines.Add("2行目");
-lines.Add("3行目");
-string result = string.Join(Environment.NewLine, lines);
+string result = "";
+result += "1行目" + Environment.NewLine;
+result += "2行目" + Environment.NewLine;
+result += "3行目";
 Console.WriteLine(result);
 // 出力:
 // 1行目

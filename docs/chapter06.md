@@ -19,7 +19,10 @@ int a2 = 5 * 5;
 int a3 = 7 * 7;
 
 // メソッドあり → 一か所で定義して何度でも呼び出す
-static int Square(int n) => n * n;
+static int Square(int n)
+{
+    return n * n;
+}
 
 int a1 = Square(3);
 int a2 = Square(5);
@@ -187,6 +190,29 @@ if (IsEven(x) && IsEven(y))
 
 ---
 
+### char 型
+
+`char` は **1 文字**を表す型です。`string`（文字列）と異なり、必ず 1 文字だけを格納します。
+
+```csharp
+char c = 'A';    // 文字リテラルはシングルクォート
+string s = "A";  // こちらは文字列（1文字の string）
+```
+
+`char` を引数として受け取ると、呼び出し側が任意の文字を指定できます。
+
+```csharp
+static string Repeat(char ch, int n)
+{
+    return new string(ch, n);  // ch を n 個並べた文字列を作る
+}
+
+Console.WriteLine(Repeat('*', 5));  // → *****
+Console.WriteLine(Repeat('-', 3));  // → ---
+```
+
+---
+
 ## 練習問題
 
 ### 問題 6-1
@@ -196,9 +222,15 @@ if (IsEven(x) && IsEven(y))
 **解答例:** `Square` という名前でヘルパーメソッドを定義し、`Problem6_1` から呼び出します。
 
 ```csharp
-private static int Square(int n) => n * n;
+private static int Square(int n)
+{
+    return n * n;
+}
 
-public static int Problem6_1(int n) => Square(n);
+public static int Problem6_1(int n)
+{
+    return Square(n);
+}
 ```
 
 ---
@@ -235,19 +267,17 @@ public static int Problem6_1(int n) => Square(n);
 
 **ヒント:** `List<string>` に各行を追加し、`string.Join(Environment.NewLine, lines)` でまとめると簡潔に書けます。
 
-**解答例:** `Triangle` という名前でヘルパーメソッドを定義し、`Problem6_4` から呼び出します。`Problem6_5` も同じメソッドを再利用できます。
+**解答例:** `Triangle` という名前でヘルパーメソッドを定義し、`Problem6_4` から呼び出します。
 
 ---
 
 ### 問題 6-5
 
-サイズ `size` と文字 `ch`（`char` 型）を受け取り、**任意の文字で三角形** を返す関数を実装しなさい。
+問題 6-4 で実装した `Triangle` を**改造**して、`$` の代わりに任意の文字 `ch`（`char` 型）を受け取れるようにしなさい。あわせて、`Problem6_4` も改造後の `Triangle(size, '$')` を呼び出すように書き直しなさい。
 
-問題 6-4 の `$` を `ch` に置き換えたものです。
+**ヒント:** `new string(ch, n)` で `ch` を `n` 個並べた文字列が作れます。`string.Join(Environment.NewLine, lines)` で行リストを改行でつなげられます。
 
-**ヒント:** `new string(ch, n)` で `ch` を `n` 個並べた文字列が作れます。
-
-**解答例:** `Triangle` という名前でヘルパーメソッドを定義し、`Problem6_5` から呼び出します。`Problem6_4` もこのメソッドを再利用できます。
+**解答例:** `Triangle(int size, char ch)` にシグネチャを変更し、`Problem6_4` と `Problem6_5` の両方からこのメソッドを呼び出します。
 
 ---
 
