@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 // 問題 7-1 〜 7-4: Dog クラス
 public class Dog
 {
     // フィールド（ヒント: private string _name = ""; など）
-    private string mName = "";
-    private int mAge = 0;
-    private string mBreed = "";
+    private string _name = "";
+    private int _age = 0;
+    private string _breed = "";
 
     // 問題 7-1: 引数なしコンストラクタ
     public Dog() { }
@@ -15,33 +14,33 @@ public class Dog
     // 問題 7-4: 犬種を引数に取るコンストラクタ
     public Dog(string breed)
     {
-        mBreed = breed;
+        _breed = breed;
     }
 
     // 問題 7-1: 名前プロパティ
     public string Name
     {
-        get { return mName; }
-        set { mName = value; }
+        get { return _name; }
+        set { _name = value; }
     }
 
     // 問題 7-2: 年齢プロパティ
     public int Age
     {
-        get { return mAge; }
-        set { mAge = value; }
+        get { return _age; }
+        set { _age = value; }
     }
 
     // 問題 7-4: 犬種プロパティ（読み取り専用）
     public string Breed
     {
-        get { return mBreed; }
+        get { return _breed; }
     }
 
     // 問題 7-4: "犬種: 名前 (年齢歳)" の形式で返す
     public string ShowProfile()
     {
-        return $"{mBreed}: {mName} ({mAge}歳)";
+        return $"{_breed}: {_name} ({_age}歳)";
     }
 }
 
@@ -51,32 +50,32 @@ public class CoinCase
 {
     // 対応する硬貨の種類: 500, 100, 50, 10, 5, 1
     // ヒント: Dictionary<int, int> で硬貨の種類と枚数を管理する
-    Dictionary<int, int> mCounts = new Dictionary<int, int>();
+    private Dictionary<int, int> _counts = new Dictionary<int, int>();
 
     // コンストラクタ: 6 種類の硬貨を 0 枚で初期化する
     public CoinCase()
     {
         foreach (int denomination in new int[] { 500, 100, 50, 10, 5, 1 })
         {
-            mCounts.Add(denomination, 0);
+            _counts.Add(denomination, 0);
         }
     }
 
     // 問題 7-5: 指定した種類の硬貨を枚数分追加する（無効な種類は無視）
     public void AddCoins(int denomination, int count)
     {
-        if (mCounts.ContainsKey(denomination))
+        if (_counts.ContainsKey(denomination))
         {
-            mCounts[denomination] += count;
+            _counts[denomination] += count;
         }
     }
 
     // 問題 7-5: 指定した種類の硬貨の枚数を返す
     public int GetCount(int denomination)
     {
-        if (mCounts.ContainsKey(denomination))
+        if (_counts.ContainsKey(denomination))
         {
-            return mCounts[denomination];
+            return _counts[denomination];
         }
         else
         {
@@ -88,7 +87,7 @@ public class CoinCase
     public int GetAmount()
     {
         int amount = 0;
-        foreach (var pair in mCounts)
+        foreach (var pair in _counts)
         {
             amount += pair.Key * pair.Value;
         }
@@ -99,7 +98,7 @@ public class CoinCase
     public int GetCount()
     {
         int count = 0;
-        foreach (var pair in mCounts)
+        foreach (var pair in _counts)
         {
             count += pair.Value;
         }
@@ -109,9 +108,9 @@ public class CoinCase
     // 問題 7-6: 指定した種類の硬貨の合計金額を返す（オーバーロード）
     public int GetAmount(int denomination)
     {
-        if (mCounts.ContainsKey(denomination))
+        if (_counts.ContainsKey(denomination))
         {
-            return denomination * mCounts[denomination];
+            return denomination * _counts[denomination];
         }
         else
         {
@@ -148,7 +147,7 @@ public class Exercises
         dog1.Name = "ポチ";
         dog2.Name = "コロ";
 
-        // dog2のNameを"タロ"に変更
+        // dog1.Name を "ポチ" から "タロ" に更新（dog2 は影響を受けない）
         dog1.Name = "タロ";
 
         return $"{dog1.Name},{dog2.Name}";
