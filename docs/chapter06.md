@@ -303,6 +303,8 @@ public static int Problem6_1(int n)
 
 **ヒント:** 2 から `√n` までの数で割り切れるか調べれば十分です。`Math.Sqrt(n)` で平方根が求まります。
 
+> **注意:** `Math.Sqrt` は `double` を返します。ループ条件は `d <= (int)Math.Sqrt(n)` または `d * d <= n` のいずれかで書けます。
+
 **解答例:** `IsPrime` という名前でヘルパーメソッドを定義し、`Problem6_7` から呼び出します。
 
 ---
