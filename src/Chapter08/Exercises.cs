@@ -25,13 +25,13 @@ public class Cat : Animal
     // 問題 8-1: "スースー" を返す
     public string Sleep()
     {
-        throw new NotImplementedException("問題 8-1 を実装してください");
+        return "スースー";
     }
 
     // 問題 8-3: "ニャー" を返す（Animal.Speak のオーバーライド）
     public override string Speak()
     {
-        throw new NotImplementedException("問題 8-3 を実装してください");
+        return "ニャー";
     }
 }
 
@@ -45,13 +45,13 @@ public class Dog : Animal
     // 問題 8-2: "トコトコ" を返す
     public string Run()
     {
-        throw new NotImplementedException("問題 8-2 を実装してください");
+        return "トコトコ";
     }
 
     // 問題 8-4: "ワンワン" を返す（Animal.Speak のオーバーライド）
     public override string Speak()
     {
-        throw new NotImplementedException("問題 8-4 を実装してください");
+        return "ワンワン";
     }
 }
 
@@ -61,30 +61,45 @@ public class Exercises
     // 問題 8-1: Cat をインスタンス化し ShowProfile と Sleep の結果をカンマ区切りで返す
     public static string Problem8_1(string name, int age)
     {
-        throw new NotImplementedException("問題 8-1 を実装してください");
+        var cat = new Cat(name, age);
+        return $"{cat.ShowProfile()},{cat.Sleep()}";
     }
 
     // 問題 8-2: Dog をインスタンス化し ShowProfile と Run の結果をカンマ区切りで返す
     public static string Problem8_2(string name, int age)
     {
-        throw new NotImplementedException("問題 8-2 を実装してください");
+        var dog = new Dog(name, age);
+        return $"{dog.ShowProfile()},{dog.Run()}";
     }
 
     // 問題 8-3: Animal 型変数に Cat を代入して Speak を呼び出す
     public static string Problem8_3()
     {
-        throw new NotImplementedException("問題 8-3 を実装してください");
+        Animal cat = new Cat("タマ", 2);
+        return cat.Speak();
     }
 
     // 問題 8-4: Animal 型変数に Dog を代入して Speak を呼び出す
     public static string Problem8_4()
     {
-        throw new NotImplementedException("問題 8-4 を実装してください");
+        Animal dog = new Dog("ポチ", 3);
+        return dog.Speak();
     }
 
     // 問題 8-5: Animal 配列に Cat と Dog を交互に格納しループで Speak をカンマ区切りで返す
     public static string Problem8_5()
     {
-        throw new NotImplementedException("問題 8-5 を実装してください");
+        Animal[] animals = {
+            new Cat("タマ", 2),
+            new Dog("ポチ", 3),
+            new Cat("ミケ", 1),
+            new Dog("ハチ", 1)
+        };
+        List<string> speaks = new List<string>();
+        foreach (Animal animal in animals)
+        {
+            speaks.Add(animal.Speak());
+        }
+        return string.Join(",", speaks);
     }
 }
