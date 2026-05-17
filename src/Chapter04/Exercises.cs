@@ -30,7 +30,7 @@ public class Exercises
         string result = "";
         for (int i = 1; i <= 8; i++)
         {
-            result += Math.Pow(2, i);
+            result += (int)Math.Pow(2, i);
             if (i < 8) result += ",";
         }
         return result;
