@@ -157,14 +157,14 @@ public class Exercises
         int a = 0;
         int b = 1;
         result = a + "," + b;
-        do
+        int nxt = a + b;
+        while (nxt <= 1000)
         {
-            int nxt = a + b;
+            result += "," + nxt;
             a = b;
             b = nxt;
-            if (nxt > 1000) break;
-            result += "," + nxt;
-        } while (true);
+            nxt = a + b;
+        }
         return result;
     }
 }
