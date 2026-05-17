@@ -1,6 +1,3 @@
-using System.Globalization;
-using System.Runtime.InteropServices;
-
 public class Exercises
 {
     // 問題 5-1: 各要素を 2 倍にした新しい配列を返す

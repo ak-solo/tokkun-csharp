@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 public class Exercises
 {
     // 問題 2-1: 入力された文字列をそのまま返す

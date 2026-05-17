@@ -1,6 +1,3 @@
-using System.ComponentModel;
-using System.Globalization;
-
 public class Exercises
 {
     // 問題 4-1: "SPAM" を 10 個カンマ区切りで並べた文字列を返す
