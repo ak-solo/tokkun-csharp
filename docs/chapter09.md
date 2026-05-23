@@ -1,159 +1,194 @@
-# 9章 LINQ
+# 9章 文字列・日付操作
 
 ## 基礎知識
 
-### LINQ とは
+### 文字列メソッド
 
-**LINQ（Language Integrated Query）** は、コレクションや配列に対して SQL に似た操作（抽出・変換・並び替え・集計）を簡潔に書けるしくみです。
-
-C# では **メソッド構文**と**クエリ構文**の 2 通りで書けます。
-
-使用するには `using System.Linq;` が必要です。
+C# の `string` 型には、文字列を操作するための便利なメソッドが多く用意されています。
+文字列は**イミュータブル（不変）**なので、メソッドを呼び出しても元の文字列は変わらず、常に新しい文字列が返ります。
 
 ---
 
-### List<T>
+#### Length（文字数）
 
-LINQ と組み合わせてよく使うコレクション型です。要素数が可変で、追加・削除が簡単にできます。
-
-```csharp
-var names = new List<string> { "Alice", "Bob", "Carol" };
-names.Add("Dave");
-Console.WriteLine(names.Count);  // 4
-```
-
-配列も `List` も、LINQ メソッドはどちらでも使えます（`IEnumerable<T>` を実装しているため）。
-
----
-
-### Where（絞り込み）
-
-条件に合う要素だけを取り出します。
+`Length` プロパティは文字列の文字数を返します。スペースや記号も 1 文字として数えます。
 
 ```csharp
-int[] numbers = { 1, 2, 3, 4, 5, 6 };
+string s = "Hello";
+Console.WriteLine(s.Length);  // 5
 
-// メソッド構文
-int[] evens = numbers.Where(n => n % 2 == 0).ToArray();
-// → { 2, 4, 6 }
-
-// クエリ構文
-int[] evens2 = (from n in numbers where n % 2 == 0 select n).ToArray();
+string empty = "";
+Console.WriteLine(empty.Length);  // 0
 ```
 
 ---
 
-### Select（変換・射影）
+#### Trim / ToUpper / ToLower
 
-各要素を別の値に変換します。
+`Trim()` は文字列の**先頭と末尾にある空白文字**（スペース・タブ・改行）を取り除いた新しい文字列を返します。
+`TrimStart()` は先頭のみ、`TrimEnd()` は末尾のみ取り除きます。
+
+`ToUpper()` はすべての文字を**大文字**に、`ToLower()` は**小文字**に変換した新しい文字列を返します。
 
 ```csharp
-int[] numbers = { 1, 2, 3 };
+string s = "  Hello World  ";
 
-// メソッド構文
-int[] doubled = numbers.Select(n => n * 2).ToArray();
-// → { 2, 4, 6 }
+Console.WriteLine(s.Trim());          // "Hello World"（前後の空白を削除）
+Console.WriteLine(s.TrimStart());     // "Hello World  "（先頭の空白のみ削除）
+Console.WriteLine(s.TrimEnd());       // "  Hello World"（末尾の空白のみ削除）
 
-// クエリ構文
-int[] doubled2 = (from n in numbers select n * 2).ToArray();
+Console.WriteLine("hello".ToUpper()); // "HELLO"
+Console.WriteLine("HELLO".ToLower()); // "hello"
 ```
 
 ---
 
-### OrderBy / OrderByDescending（並び替え）
+#### Contains / StartsWith / EndsWith
+
+いずれも `bool` を返す検索メソッドです。大文字・小文字を**区別**します。
+
+- `Contains(value)` ― `value` が文字列内に含まれているか
+- `StartsWith(value)` ― 文字列が `value` で始まっているか
+- `EndsWith(value)` ― 文字列が `value` で終わっているか
 
 ```csharp
-string[] words = { "banana", "apple", "cherry" };
+string s = "Hello, C# World";
 
-string[] asc  = words.OrderBy(w => w).ToArray();              // アルファベット昇順
-string[] desc = words.OrderByDescending(w => w).ToArray();    // 降順
-
-// 文字数の短い順
-string[] byLen = words.OrderBy(w => w.Length).ToArray();
+Console.WriteLine(s.Contains("C#"));       // true
+Console.WriteLine(s.StartsWith("Hello"));  // true
+Console.WriteLine(s.EndsWith("World"));    // true
+Console.WriteLine(s.StartsWith("world"));  // false（大文字・小文字を区別する）
 ```
 
 ---
 
-### 集計（Count / Sum / Average / Min / Max）
+#### IndexOf / Substring
+
+`IndexOf(value)` は、`value` が**最初に現れる位置**（0 始まりのインデックス）を `int` で返します。
+見つからなかった場合は `-1` を返します。
+
+`Substring(startIndex)` は `startIndex` 文字目以降をすべて切り出します。
+`Substring(startIndex, length)` は `startIndex` 文字目から `length` 文字分を切り出します。
 
 ```csharp
-int[] scores = { 80, 60, 95, 70, 55 };
+string s = "user@example.com";
 
-Console.WriteLine(scores.Count());    // 5
-Console.WriteLine(scores.Sum());      // 360
-Console.WriteLine(scores.Average());  // 72.0
-Console.WriteLine(scores.Min());      // 55
-Console.WriteLine(scores.Max());      // 95
+int idx = s.IndexOf('@');              // 4
+string user   = s.Substring(0, idx);  // "user"（0文字目から idx 文字分）
+string domain = s.Substring(idx + 1); // "example.com"（idx+1 文字目以降すべて）
+
+// 見つからない場合
+int notFound = s.IndexOf('!');  // -1
 ```
 
 ---
 
-### メソッドチェーン
+#### Replace
 
-LINQ メソッドはつなげて書けます。
+`Replace(oldValue, newValue)` は、文字列内で `oldValue` に**一致するすべての箇所**を `newValue` に置き換えた新しい文字列を返します。
+一致する箇所がなければ元の文字列をそのまま返します。
 
 ```csharp
-int[] numbers = { 5, 3, 8, 1, 6, 2, 9, 4 };
+string s = "Hello World";
 
-// 偶数だけ抽出 → 降順に並べ → 先頭 3 件
-int[] result = numbers
-    .Where(n => n % 2 == 0)
-    .OrderByDescending(n => n)
-    .Take(3)
-    .ToArray();
-// → { 8, 6, 4 }
+Console.WriteLine(s.Replace("World", "C#")); // "Hello C#"
+Console.WriteLine(s.Replace("l", "L"));      // "HeLLo WorLd"（一致するすべてを置換）
+Console.WriteLine(s.Replace("x", "Y"));      // "Hello World"（一致なし → そのまま）
 ```
 
 ---
 
-### Any / All
+#### Split / string.Join
 
-- `Any(条件)` ― 条件を満たす要素が **1 つでも** あれば `true`
-- `All(条件)` ― **すべての** 要素が条件を満たせば `true`
+`Split(separator)` は、区切り文字で文字列を分割した `string[]` を返します。
+区切り文字自体は結果に含まれません。
+
+`string.Join(separator, values)` は配列やコレクションの要素を `separator` で連結した文字列を返します。
 
 ```csharp
-int[] scores = { 80, 60, 95, 70 };
+string csv = "apple, banana, cherry";
 
-Console.WriteLine(scores.Any(s => s >= 90));  // true（95 がある）
-Console.WriteLine(scores.All(s => s >= 60));  // true（全員 60 以上）
-Console.WriteLine(scores.All(s => s >= 70));  // false（60 がある）
+string[] parts = csv.Split(',');  // ["apple", " banana", " cherry"]（',' で分割）
+
+// 区切り文字列でも分割できる
+string[] lines = "a::b::c".Split("::");
+
+// string.Join で再結合
+string joined = string.Join(" / ", new[] { "a", "b", "c" }); // "a / b / c"
 ```
 
 ---
 
-### GroupBy（グループ化）
+#### string.IsNullOrEmpty / IsNullOrWhiteSpace
 
-同じキーを持つ要素をまとめます。
+文字列が「空かどうか」を調べる静的メソッドです。
+
+- `string.IsNullOrEmpty(s)` ― `s` が `null` または空文字列 `""` のとき `true`
+- `string.IsNullOrWhiteSpace(s)` ― `null`・空文字列・空白文字のみのとき `true`
 
 ```csharp
-string[] words = { "apple", "ant", "banana", "bear", "cat" };
-
-// 先頭文字でグループ化し、グループ名と件数を表示
-foreach (var g in words.GroupBy(w => w[0]))
-{
-    Console.WriteLine($"{g.Key}: {g.Count()}件");
-}
-// a: 2件
-// b: 2件
-// c: 1件
+Console.WriteLine(string.IsNullOrEmpty(""));        // true
+Console.WriteLine(string.IsNullOrEmpty("  "));      // false（空白文字がある）
+Console.WriteLine(string.IsNullOrWhiteSpace("  ")); // true（空白のみ）
+Console.WriteLine(string.IsNullOrWhiteSpace("hi")); // false
 ```
 
 ---
 
-### クエリ構文
+### DateTime（日付・時刻）
 
-SQL に似た書き方です。`from`・`where`・`select`・`orderby` を使います。
+`DateTime` 型は日付と時刻を表します。
+
+---
+
+#### DateTime の作成とプロパティ
 
 ```csharp
-int[] scores = { 80, 60, 95, 70, 55 };
+DateTime dt = new DateTime(2024, 3, 15);  // 2024年3月15日
 
-// 70 以上のスコアを降順に並べて取得
-int[] result = (from s in scores
-                where s >= 70
-                orderby s descending
-                select s).ToArray();
-// → { 95, 80, 70 }
+Console.WriteLine(dt.Year);       // 2024
+Console.WriteLine(dt.Month);      // 3
+Console.WriteLine(dt.Day);        // 15
+Console.WriteLine(dt.DayOfWeek);  // Friday
 ```
+
+---
+
+#### 日付の演算
+
+```csharp
+DateTime dt = new DateTime(2024, 1, 1);
+
+DateTime nextWeek  = dt.AddDays(7);    // 2024/1/8
+DateTime nextMonth = dt.AddMonths(1);  // 2024/2/1
+DateTime nextYear  = dt.AddYears(1);   // 2025/1/1
+```
+
+---
+
+#### 日付の差分
+
+```csharp
+DateTime from = new DateTime(2024, 1, 1);
+DateTime to   = new DateTime(2024, 1, 10);
+
+TimeSpan diff = to - from;
+Console.WriteLine(diff.Days);  // 9
+```
+
+---
+
+#### 日付のフォーマット
+
+```csharp
+DateTime dt = new DateTime(2024, 3, 5);
+
+Console.WriteLine(dt.ToString("yyyy/MM/dd"));    // "2024/03/05"
+Console.WriteLine(dt.ToString("yyyy年M月d日"));  // "2024年3月5日"
+Console.WriteLine(dt.ToString("MM/dd"));         // "03/05"
+```
+
+`M` は月を 1 桁/2 桁で、`MM` は常に 2 桁で出力します（`d`/`dd` も同様）。
 
 ---
 
@@ -161,96 +196,97 @@ int[] result = (from s in scores
 
 ### 問題 9-1
 
-`int` 型配列 `numbers` と整数 `threshold` を受け取り、`threshold` **以上** の要素だけを **昇順** に並べた配列を返す関数を実装しなさい。
+文字列 `input` を受け取り、前後の空白を取り除いてから **すべて大文字** に変換した文字列を返す関数を実装しなさい。
 
-例: `numbers={5, 1, 8, 3, 9, 2}`, `threshold=4` → `{5, 8, 9}`
+例: `"  hello world  "` → `"HELLO WORLD"`
 
-**ヒント:** `Where` → `OrderBy` の順にチェーンします。
+**ヒント:** `Trim()` → `ToUpper()` の順に適用します。
 
 ---
 
 ### 問題 9-2
 
-`int` 型配列 `numbers` を受け取り、各要素を `"{n}番"` という形式の文字列に変換した `string` 配列を返す関数を実装しなさい。
+文字列 `text` と区切り文字 `delimiter` を受け取り、**最初に区切り文字が現れる位置より前** の部分文字列を返す関数を実装しなさい。区切り文字が存在しない場合は `text` をそのまま返すこと。
 
-例: `numbers={3, 1, 4}` → `{"3番", "1番", "4番"}`
+例: `"user@example.com", '@'` → `"user"`
+例: `"hello", '@'` → `"hello"`
 
-**ヒント:** `Select` と文字列補間 `$"..."` を組み合わせます。
+**ヒント:** `IndexOf` で位置を取得し、`-1` の場合は元の文字列を、それ以外は `Substring` で切り出します。
 
 ---
 
 ### 問題 9-3
 
-`string` 型配列 `words` を受け取り、文字数の **短い順**（文字数が同じ場合はアルファベット順）に並べた配列を返す関数を実装しなさい。
+カンマ区切りの文字列 `csv` を受け取り、各要素の前後の空白を除去した `string` 配列を返す関数を実装しなさい。
 
-例: `words={"banana", "fig", "apple", "kiwi"}` → `{"fig", "kiwi", "apple", "banana"}`
+例: `"apple, banana, cherry"` → `["apple", "banana", "cherry"]`
 
-**ヒント:** `OrderBy` は複数のキーを `ThenBy` でつなげられます。
+**ヒント:** `Split(',')` で分割した後、各要素に `Trim()` を適用します。
 
 ---
 
 ### 問題 9-4
 
-`int` 型配列 `scores` を受け取り、その **平均値**（`double`）を返す関数を実装しなさい。
+文字列 `text` 内に含まれる `oldWord` をすべて `newWord` に置き換えた文字列を返す関数を実装しなさい。
 
-例: `scores={80, 60, 95, 70, 55}` → `72.0`
+例: `"Hello World World", "World", "C#"` → `"Hello C# C#"`
+
+**ヒント:** `Replace` は一致するすべての箇所を置換します。
 
 ---
 
 ### 問題 9-5
 
-`int` 型配列 `numbers` を受け取り、以下の処理をこの順で行った配列を返す関数を実装しなさい。
+文字列の検索に関する次の 3 つの関数を実装しなさい。
 
-1. 偶数のみ抽出する
-2. 各要素を 2 乗する
-3. 昇順に並べる
+- `Problem9_5_StartsWith` ― `text` が `prefix` で始まっていれば `true` を返す
+- `Problem9_5_EndsWith` ― `text` が `suffix` で終わっていれば `true` を返す
+- `Problem9_5_Contains` ― `text` に `keyword` が含まれていれば `true` を返す
 
-例: `numbers={5, 2, 8, 3, 4, 6}` → `{4, 16, 36, 64}`
-
-**ヒント:** `Where` → `Select` → `OrderBy` の順にチェーンします。
+例（StartsWith）: `"Hello, World", "Hello"` → `true`
+例（EndsWith）: `"Hello, World", "World"` → `true`
+例（Contains）: `"Hello, World", "C#"` → `false`
 
 ---
 
 ### 問題 9-6
 
-`int` 型配列 `scores` と整数 `n` を受け取り、**上位 n 件** のスコアを降順に並べた配列を返す関数を実装しなさい。
+`DateTime` 型の日付 `date` を受け取り、その曜日を **日本語**（`"月曜日"`〜`"日曜日"`）で返す関数を実装しなさい。
 
-例: `scores={70, 85, 60, 95, 75}`, `n=3` → `{95, 85, 75}`
+例: `new DateTime(2024, 1, 1)` （月曜日）→ `"月曜日"`
+例: `new DateTime(2024, 1, 7)` （日曜日）→ `"日曜日"`
 
-**ヒント:** `OrderByDescending` → `Take` の順にチェーンします。
+**ヒント:** `date.DayOfWeek` は `DayOfWeek` 列挙型（`Monday`, `Tuesday`, ...）を返します。`switch` 式で変換しましょう。
 
 ---
 
 ### 問題 9-7
 
-`int` 型配列 `numbers` を受け取り、以下の 3 つを判定する関数をそれぞれ実装しなさい。
+2 つの `DateTime` 型の日付 `from` と `to` を受け取り、その差の **日数**（`int`）を返す関数を実装しなさい。`to` は常に `from` 以降の日付が渡されると仮定してよい。
 
-- `Problem9_7_HasNegative` ― 負の数が 1 つでも含まれていれば `true` を返す
-- `Problem9_7_AllPositive` ― すべての要素が正の数（0 より大きい）であれば `true` を返す
-- `Problem9_7_CountOver` ― 引数 `threshold` を超える要素の個数を返す
+例: `from=2024/1/1, to=2024/1/10` → `9`
+例: `from=2024/1/1, to=2024/3/1` → `60`
 
-例（HasNegative）: `numbers={3, -1, 5}` → `true`
-例（AllPositive）: `numbers={3, 1, 5}` → `true`
-例（CountOver）: `numbers={3, 7, 2, 8, 5}`, `threshold=4` → `3`
+**ヒント:** `(to - from).Days` で `TimeSpan` の日数部分を取得できます。
 
 ---
 
 ### 問題 9-8
 
-**クエリ構文**を使って実装しなさい。
+`DateTime` 型の日付 `date` を受け取り、`"yyyy年M月d日"` の形式に整形した文字列を返す関数を実装しなさい。
 
-`string` 型配列 `words` と整数 `minLength` を受け取り、文字数が `minLength` 以上の単語を **文字数の降順** に並べた配列を返す関数を実装しなさい。
+例: `new DateTime(2024, 3, 5)` → `"2024年3月5日"`
+例: `new DateTime(2024, 12, 31)` → `"2024年12月31日"`
 
-例: `words={"cat", "elephant", "ox", "dog", "hippopotamus"}`, `minLength=4` → `{"hippopotamus", "elephant"}`
-
-**ヒント:** `from w in words where ... orderby ... descending select w` の形で書きます。
+**ヒント:** `date.ToString("yyyy年M月d日")` を使います。
 
 ---
 
 ### 問題 9-9
 
-`string` 型配列 `words` を受け取り、**先頭文字ごとの出現件数** を `Dictionary<char, int>` で返す関数を実装しなさい。
+`DateTime` 型の日付 `date` と整数 `days` を受け取り、`days` 日後の日付を `"yyyy/MM/dd"` の形式に整形した文字列を返す関数を実装しなさい。
 
-例: `words={"apple", "ant", "banana", "bear", "cat"}` → `{'a': 2, 'b': 2, 'c': 1}`
+例: `new DateTime(2024, 1, 1), 30` → `"2024/01/31"`
+例: `new DateTime(2024, 1, 31), 1` → `"2024/02/01"`
 
-**ヒント:** `GroupBy(w => w[0])` でグループ化し、`.ToDictionary(g => g.Key, g => g.Count())` で辞書に変換します。
+**ヒント:** `AddDays(days)` で日付を進め、`ToString("yyyy/MM/dd")` で整形します。
