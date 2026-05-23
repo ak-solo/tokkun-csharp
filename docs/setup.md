@@ -154,6 +154,48 @@ dotnet test
 
 ---
 
+## 問題の解き方
+
+各問題は次の3ステップで進めよう。
+
+### ステップ 1: 実装する
+
+`src/ChapterXX/Exercises.cs` を開き、該当メソッドに処理を書く。
+
+### ステップ 2: 動作を確認する
+
+実装したら、プレイグラウンドまたは csharprepl で実際に動かして結果を確かめる。
+
+**プレイグラウンドで確認する場合**
+
+`playground/ChapterXX/Program.cs` に呼び出しコードを書いて実行する。
+
+```bash
+dotnet run --project playground/Chapter01
+```
+
+**csharprepl で確認する場合**
+
+```bash
+csharprepl
+```
+
+```csharp
+> #load "src/Chapter01/Exercises.cs"
+> Exercises.Problem1_1()
+```
+
+### ステップ 3: テストを実行する
+
+```bash
+dotnet test tests/Chapter01.Tests   # 特定の章のみ
+dotnet test                         # 全章まとめて
+```
+
+全テストがグリーン（合格）になれば完了。
+
+---
+
 ## csharprepl — 対話型 C# 実行環境
 
 コンテナ内には **csharprepl** がインストールされています。式やコードをその場で実行して結果をすぐに確認できるツールです。

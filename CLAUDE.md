@@ -11,8 +11,8 @@ C# を題材にした初学者向けプログラミング学習教材。
 ```
 1. docs/ の README（基礎説明 + 問題文）を読む
 2. src/ の骨格コードに実装を書く
-3. dotnet test でユニットテストを実行し、全テストが通るまで修正する
-4. dotnet run --project playground/ChapterXX で動作を体感する
+3. playground または csharprepl で動作を確認する
+4. dotnet test でテストを実行し、グリーンになるまで修正する
 ```
 
 ---
