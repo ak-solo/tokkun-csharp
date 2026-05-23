@@ -1,70 +1,67 @@
-using System.Collections.Generic;
-using System.Linq;
-
 public class Exercises
 {
-    // 問題 9-1: threshold 以上の要素を昇順に返す（Where + OrderBy）
-    public static int[] Problem9_1(int[] numbers, int threshold)
+    // 問題 9-1: 前後の空白を除去して大文字変換
+    public static string Problem9_1(string input)
     {
         throw new NotImplementedException("問題 9-1 を実装してください");
     }
 
-    // 問題 9-2: 各要素を "{n}番" の文字列に変換した配列を返す（Select）
-    public static string[] Problem9_2(int[] numbers)
+    // 問題 9-2: 区切り文字より前の部分文字列を返す（なければ元の文字列）
+    public static string Problem9_2(string text, char delimiter)
     {
         throw new NotImplementedException("問題 9-2 を実装してください");
     }
 
-    // 問題 9-3: 文字数の短い順（同じ文字数はアルファベット順）に並べた配列を返す（OrderBy + ThenBy）
-    public static string[] Problem9_3(string[] words)
+    // 問題 9-3: CSV 文字列を分割して各要素をトリムした配列を返す
+    public static string[] Problem9_3(string csv)
     {
         throw new NotImplementedException("問題 9-3 を実装してください");
     }
 
-    // 問題 9-4: 平均値（double）を返す（Average）
-    public static double Problem9_4(int[] scores)
+    // 問題 9-4: text 内の oldWord をすべて newWord に置換
+    public static string Problem9_4(string text, string oldWord, string newWord)
     {
         throw new NotImplementedException("問題 9-4 を実装してください");
     }
 
-    // 問題 9-5: 偶数を抽出 → 2乗 → 昇順（Where + Select + OrderBy のチェーン）
-    public static int[] Problem9_5(int[] numbers)
+    // 問題 9-5: text が prefix で始まれば true
+    public static bool Problem9_5_StartsWith(string text, string prefix)
     {
-        throw new NotImplementedException("問題 9-5 を実装してください");
+        throw new NotImplementedException("問題 9-5 (StartsWith) を実装してください");
     }
 
-    // 問題 9-6: 降順に並べて先頭 n 件を返す（OrderByDescending + Take）
-    public static int[] Problem9_6(int[] scores, int n)
+    // 問題 9-5: text が suffix で終わっていれば true
+    public static bool Problem9_5_EndsWith(string text, string suffix)
+    {
+        throw new NotImplementedException("問題 9-5 (EndsWith) を実装してください");
+    }
+
+    // 問題 9-5: text に keyword が含まれていれば true
+    public static bool Problem9_5_Contains(string text, string keyword)
+    {
+        throw new NotImplementedException("問題 9-5 (Contains) を実装してください");
+    }
+
+    // 問題 9-6: 曜日を日本語で返す
+    public static string Problem9_6(DateTime date)
     {
         throw new NotImplementedException("問題 9-6 を実装してください");
     }
 
-    // 問題 9-7: 負の数が 1 つでも含まれていれば true（Any）
-    public static bool Problem9_7_HasNegative(int[] numbers)
+    // 問題 9-7: 2 つの日付の差分（日数）を返す
+    public static int Problem9_7(DateTime from, DateTime to)
     {
-        throw new NotImplementedException("問題 9-7 (HasNegative) を実装してください");
+        throw new NotImplementedException("問題 9-7 を実装してください");
     }
 
-    // 問題 9-7: すべての要素が正の数（> 0）であれば true（All）
-    public static bool Problem9_7_AllPositive(int[] numbers)
-    {
-        throw new NotImplementedException("問題 9-7 (AllPositive) を実装してください");
-    }
-
-    // 問題 9-7: threshold を超える要素の個数を返す（Count）
-    public static int Problem9_7_CountOver(int[] numbers, int threshold)
-    {
-        throw new NotImplementedException("問題 9-7 (CountOver) を実装してください");
-    }
-
-    // 問題 9-8: 文字数 minLength 以上の単語を文字数の降順に返す（クエリ構文）
-    public static string[] Problem9_8(string[] words, int minLength)
+    // 問題 9-8: "yyyy年M月d日" 形式で日付を返す
+    public static string Problem9_8(DateTime date)
     {
         throw new NotImplementedException("問題 9-8 を実装してください");
     }
 
-    // 問題 9-9: 先頭文字ごとの出現件数を Dictionary で返す（GroupBy）
-    public static Dictionary<char, int> Problem9_9(string[] words)
+    // 問題 9-9: days 日後の日付を "yyyy/MM/dd" 形式で返す
+    public static string Problem9_9(DateTime date, int days)
     {
         throw new NotImplementedException("問題 9-9 を実装してください");
     }
