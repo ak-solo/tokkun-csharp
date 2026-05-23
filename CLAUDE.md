@@ -43,7 +43,7 @@ tokkun-csharp/
 ├── playground/
 │   ├── Chapter01/
 │   │   ├── Chapter01.Playground.csproj
-│   │   └── Program.cs          # 値を変えながら実行できる実験用コード
+│   │   └── Program.cs          # 1問目の呼び出し例（2問目以降は学習者が自分で追加する）
 │   ├── Chapter02/
 │   └── ...
 ├── tokkun-csharp.sln
@@ -87,7 +87,7 @@ tokkun-csharp/
 1. `docs/chapterXX.md` に基礎説明と問題文を書く
 2. `src/ChapterXX/Exercises.cs` に骨格メソッド（`NotImplementedException`）を追加する
 3. `tests/ChapterXX.Tests/ExercisesTests.cs` にユニットテストを書く（複数の InlineData で検証）
-4. `playground/ChapterXX/Program.cs` に実験用コードを追加する
+4. `playground/ChapterXX/Program.cs` に1問目の呼び出し例を記載する
 5. `tokkun-csharp.sln` にプロジェクトを追加する
 
 ---
