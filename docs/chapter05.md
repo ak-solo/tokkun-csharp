@@ -181,6 +181,8 @@ Console.WriteLine(triangle[2][0]);  // → 1（2 行目の 0 番目）
 
 `List<int>` で要素を収集してから `.ToArray()` で変換すると、長さが事前に決まらなくても扱いやすいです。
 
+> **`var` とは:** 右辺の式から型を自動的に推論するキーワードです。`var small = new List<int>();` は `List<int> small = new List<int>();` と書いたのと同じ意味になります。
+
 ```csharp
 var small = new List<int>();
 var large = new List<int>();
