@@ -177,12 +177,13 @@ dotnet run --project playground/Chapter01
 **csharprepl で確認する場合**
 
 ```bash
-csharprepl
+repl 1   # Chapter01 の場合（番号を変えると他の章も開ける）
 ```
 
+起動すると Exercises.cs が自動でロード済みの状態になる。あとはメソッドを呼び出すだけ。
+
 ```csharp
-> #load "src/Chapter01/Exercises.cs"
-> Exercises.Problem1_1()
+> ex.Problem1_1()
 ```
 
 ### ステップ 3: テストを実行する
@@ -202,8 +203,10 @@ dotnet test                         # 全章まとめて
 
 ### 起動・終了
 
+問題を解くときは `repl <章番号>` で起動する。Exercises.cs が自動でロードされた状態で始まるので、すぐにメソッドを呼び出せる。
+
 ```bash
-csharprepl   # 起動
+repl 1   # Chapter01 を開く（repl 2 なら Chapter02）
 ```
 
 ```bash
@@ -251,11 +254,13 @@ List<int>(5) { 2, 4, 6, 8, 10 }
 
 ### 自分の実装を読み込んで試す
 
-`#load` で `src/` のファイルを読み込めます。実装したメソッドをその場で動かして確認できます。
+`repl <章番号>` で起動すると、`#load` と `var ex = new Exercises();` が自動で実行済みの状態になる。起動後すぐにメソッドを呼び出せる。
+
+```bash
+repl 1
+```
 
 ```csharp
-> #load "src/Chapter01/Exercises.cs"
-> var ex = new Exercises();
 > ex.Problem1_1()
 ```
 
