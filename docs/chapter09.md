@@ -256,7 +256,7 @@ Console.WriteLine(dt.ToString("MM/dd"));         // "03/05"
 例: `new DateTime(2024, 1, 1)` （月曜日）→ `"月曜日"`
 例: `new DateTime(2024, 1, 7)` （日曜日）→ `"日曜日"`
 
-**ヒント:** `date.DayOfWeek` は `DayOfWeek` 列挙型（`Monday`, `Tuesday`, ...）を返します。`switch` 式で変換しましょう。
+**ヒント:** `date.DayOfWeek` は `DayOfWeek` 列挙型（`Monday`, `Tuesday`, ...）を返します。`switch` 文で変換しましょう。
 
 ---
 
