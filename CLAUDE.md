@@ -122,6 +122,26 @@ dotnet run --project playground/Chapter01  # プレイグラウンドを実行
 
 ---
 
+## ブランチ構成
+
+| ブランチ | 用途 |
+|---|---|
+| `main` | 骨格コードのみ（学習者が実装を書く） |
+| `answer` | 解答例を実装済みの状態 |
+
+### main の変更を answer に反映する手順
+
+`main` にコミットが追加されたら、以下の手順で `answer` に反映する。
+
+```bash
+git checkout answer
+git merge main --no-edit
+git push origin answer
+git checkout main
+```
+
+---
+
 ## Git コミット方針
 
 - コミットは **変更理由（目的）ごとに分割**すること
