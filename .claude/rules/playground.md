@@ -7,8 +7,8 @@ paths:
 
 ## 目的
 
-- 引数を変えながらメソッドの動作を確認する「実験の場」
-- テストとは別に、自分の実装が直感的に正しいか体感できる
+- 実装したメソッドを自分の手で呼び出し、動作を体感する「実験の場」
+- 1問目の呼び出し例を起点に、自分でコードを自由に追加・改造して試す
 
 ## 実行方法
 
@@ -19,25 +19,18 @@ dotnet run --project playground/Chapter02   # Chapter02 を実行
 
 ## ファイル構成
 
+各章の `Program.cs` には、**1問目の呼び出し例だけ**を記載する。
+それ以外の問題は最初から書かない（学習者が自分で追加する余地を残す）。
+
 ```csharp
 // playground/Chapter01/Program.cs（トップレベルステートメント）
 
-try
-{
-    Console.WriteLine(Exercises.Problem1_1());
-
-    int x9 = 3;   // ← この値を変えて実行してみよう
-    Console.WriteLine($"{x9} の 2 倍・3 倍・4 倍: {Exercises.Problem1_9(x9)}");
-}
-catch (NotImplementedException)
-{
-    Console.WriteLine("  [未実装] 問題 1-1");
-}
+Console.WriteLine(Exercises.Problem1_1());
 ```
 
 ## プレイグラウンドの原則
 
-- `Program.cs` の変数の値（コメントで `← 変えて試そう` と示した箇所）を書き換えて実行する
+- 1問目の呼び出しのみ記載する（2問目以降は学習者が自分で書く）
 - C# 9 以降のトップレベルステートメントを使う（`class Program` / `Main` 不要）
-- 未実装の問題は `NotImplementedException` を catch して `[未実装]` と表示する
-- 同じ変数名が複数必要な場合はサフィックスで区別する（例: `x9`, `x10`, `x13`）
+- `try/catch` は書かない（テンプレートコードを最小限にして自由な使い方を促す）
+- 引数を取るメソッドは変数を宣言してから渡す（値を変えて試しやすくするため）
