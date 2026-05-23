@@ -2,204 +2,212 @@ using Xunit;
 
 public class Chapter09Tests
 {
-    // ===== 問題 9-1: Where + OrderBy =====
+    // ===== 問題 9-1: Trim + ToUpper =====
 
     [Theory]
-    [InlineData(new int[] { 5, 1, 8, 3, 9, 2 }, 4, new int[] { 5, 8, 9 })]
-    [InlineData(new int[] { 10, 2, 5, 7, 1 }, 5, new int[] { 5, 7, 10 })]
-    [InlineData(new int[] { 1, 2, 3 }, 10, new int[] { })]
-    [InlineData(new int[] { 5, 5, 5 }, 3, new int[] { 5, 5, 5 })]
-    public void Test_9_1_FilterAndSort(int[] numbers, int threshold, int[] expected)
+    [InlineData("  hello world  ", "HELLO WORLD")]
+    [InlineData("  C#  ", "C#")]
+    [InlineData("already", "ALREADY")]
+    [InlineData("  ", "")]
+    public void Test_9_1_TrimAndUpperCase(string input, string expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_1(numbers, threshold));
+        Assert.Equal(expected, Exercises.Problem9_1(input));
     }
 
     [Fact]
-    public void Test_9_1_ThresholdIsInclusive()
+    public void Test_9_1_MixedCase()
     {
-        // threshold と同じ値は含まれる（以上）
-        Assert.Equal(new[] { 4, 4 }, Exercises.Problem9_1(new[] { 4, 4 }, 4));
+        Assert.Equal("HELLO WORLD", Exercises.Problem9_1("  Hello World  "));
     }
 
-    // ===== 問題 9-2: Select =====
+    // ===== 問題 9-2: IndexOf + Substring =====
 
     [Theory]
-    [InlineData(new int[] { 3, 1, 4 }, new string[] { "3番", "1番", "4番" })]
-    [InlineData(new int[] { 10 }, new string[] { "10番" })]
-    [InlineData(new int[] { 1, 2, 3 }, new string[] { "1番", "2番", "3番" })]
-    public void Test_9_2_ToLabel(int[] numbers, string[] expected)
+    [InlineData("user@example.com", '@', "user")]
+    [InlineData("first.last@mail.co.jp", '@', "first.last")]
+    [InlineData("hello", '@', "hello")]
+    public void Test_9_2_SubstringBeforeDelimiter(string text, char delimiter, string expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_2(numbers));
+        Assert.Equal(expected, Exercises.Problem9_2(text, delimiter));
     }
 
     [Fact]
-    public void Test_9_2_PreservesOrder()
+    public void Test_9_2_SlashDelimiter()
     {
-        string[] result = Exercises.Problem9_2(new[] { 9, 1, 5 });
-        Assert.Equal("9番", result[0]);
-        Assert.Equal("1番", result[1]);
-        Assert.Equal("5番", result[2]);
+        Assert.Equal("https:", Exercises.Problem9_2("https://example.com", '/'));
     }
 
-    // ===== 問題 9-3: OrderBy + ThenBy =====
+    // ===== 問題 9-3: Split + Trim =====
 
     [Fact]
-    public void Test_9_3_SortByLengthThenAlphabetical()
+    public void Test_9_3_SplitAndTrim()
     {
-        string[] result = Exercises.Problem9_3(new[] { "banana", "fig", "apple", "kiwi" });
-        Assert.Equal(new[] { "fig", "kiwi", "apple", "banana" }, result);
+        Assert.Equal(new[] { "apple", "banana", "cherry" }, Exercises.Problem9_3("apple, banana, cherry"));
     }
 
     [Fact]
-    public void Test_9_3_SameLengthSortedAlphabetically()
+    public void Test_9_3_NoExtraSpaces()
     {
-        Assert.Equal(new[] { "ant", "bat", "cat" }, Exercises.Problem9_3(new[] { "cat", "ant", "bat" }));
+        Assert.Equal(new[] { "a", "b", "c" }, Exercises.Problem9_3("a,b,c"));
     }
 
     [Fact]
     public void Test_9_3_SingleElement()
     {
-        Assert.Equal(new[] { "hello" }, Exercises.Problem9_3(new[] { "hello" }));
+        Assert.Equal(new[] { "only" }, Exercises.Problem9_3("only"));
     }
 
-    // ===== 問題 9-4: Average =====
+    [Fact]
+    public void Test_9_3_WithLeadingAndTrailingSpaces()
+    {
+        string[] result = Exercises.Problem9_3("  alpha , beta  ,  gamma  ");
+        Assert.Equal("alpha", result[0]);
+        Assert.Equal("beta", result[1]);
+        Assert.Equal("gamma", result[2]);
+    }
+
+    // ===== 問題 9-4: Replace =====
 
     [Theory]
-    [InlineData(new int[] { 80, 60, 95, 70, 55 }, 72.0)]
-    [InlineData(new int[] { 100, 0 }, 50.0)]
-    [InlineData(new int[] { 75 }, 75.0)]
-    [InlineData(new int[] { 1, 2, 3, 4 }, 2.5)]
-    public void Test_9_4_Average(int[] scores, double expected)
+    [InlineData("Hello World World", "World", "C#", "Hello C# C#")]
+    [InlineData("aabbcc", "b", "X", "aaXXcc")]
+    [InlineData("no match here", "xyz", "ABC", "no match here")]
+    public void Test_9_4_ReplaceAll(string text, string oldWord, string newWord, string expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_4(scores));
-    }
-
-    // ===== 問題 9-5: Where + Select + OrderBy チェーン =====
-
-    [Fact]
-    public void Test_9_5_EvenSquaredSorted()
-    {
-        Assert.Equal(new[] { 4, 16, 36, 64 }, Exercises.Problem9_5(new[] { 5, 2, 8, 3, 4, 6 }));
+        Assert.Equal(expected, Exercises.Problem9_4(text, oldWord, newWord));
     }
 
     [Fact]
-    public void Test_9_5_NoEvens()
+    public void Test_9_4_EmptyReplacement()
     {
-        Assert.Empty(Exercises.Problem9_5(new[] { 1, 3, 5 }));
+        Assert.Equal("Hello ", Exercises.Problem9_4("Hello World", "World", ""));
     }
 
-    [Fact]
-    public void Test_9_5_SingleEven()
-    {
-        Assert.Equal(new[] { 16 }, Exercises.Problem9_5(new[] { 4 }));
-    }
-
-    [Fact]
-    public void Test_9_5_ResultIsAscending()
-    {
-        int[] result = Exercises.Problem9_5(new[] { 6, 2, 4 });
-        Assert.Equal(new[] { 4, 16, 36 }, result);
-    }
-
-    // ===== 問題 9-6: OrderByDescending + Take =====
+    // ===== 問題 9-5: StartsWith / EndsWith / Contains =====
 
     [Theory]
-    [InlineData(new int[] { 70, 85, 60, 95, 75 }, 3, new int[] { 95, 85, 75 })]
-    [InlineData(new int[] { 10, 20, 30 }, 2, new int[] { 30, 20 })]
-    [InlineData(new int[] { 1, 2, 3, 4, 5 }, 1, new int[] { 5 })]
-    public void Test_9_6_TopN(int[] scores, int n, int[] expected)
+    [InlineData("Hello, World", "Hello", true)]
+    [InlineData("Hello, World", "World", false)]
+    [InlineData("Hello, World", "", true)]
+    public void Test_9_5_StartsWith(string text, string prefix, bool expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_6(scores, n));
-    }
-
-    [Fact]
-    public void Test_9_6_AllElements()
-    {
-        Assert.Equal(new[] { 5, 5, 5 }, Exercises.Problem9_6(new[] { 5, 5, 5 }, 3));
-    }
-
-    // ===== 問題 9-7: Any / All / Count =====
-
-    [Theory]
-    [InlineData(new int[] { 3, -1, 5 }, true)]
-    [InlineData(new int[] { 3, 1, 5 }, false)]
-    [InlineData(new int[] { -1, -2, -3 }, true)]
-    [InlineData(new int[] { 0, 1, 2 }, false)]
-    public void Test_9_7_HasNegative(int[] numbers, bool expected)
-    {
-        Assert.Equal(expected, Exercises.Problem9_7_HasNegative(numbers));
+        Assert.Equal(expected, Exercises.Problem9_5_StartsWith(text, prefix));
     }
 
     [Theory]
-    [InlineData(new int[] { 3, 1, 5 }, true)]
-    [InlineData(new int[] { 3, 0, 5 }, false)]
-    [InlineData(new int[] { 3, -1, 5 }, false)]
-    [InlineData(new int[] { 1 }, true)]
-    public void Test_9_7_AllPositive(int[] numbers, bool expected)
+    [InlineData("Hello, World", "World", true)]
+    [InlineData("Hello, World", "Hello", false)]
+    [InlineData("Hello, World", "", true)]
+    public void Test_9_5_EndsWith(string text, string suffix, bool expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_7_AllPositive(numbers));
+        Assert.Equal(expected, Exercises.Problem9_5_EndsWith(text, suffix));
     }
 
     [Theory]
-    [InlineData(new int[] { 3, 7, 2, 8, 5 }, 4, 3)]
-    [InlineData(new int[] { 1, 2, 3 }, 10, 0)]
-    [InlineData(new int[] { 5, 5, 5 }, 4, 3)]
-    [InlineData(new int[] { 5, 5, 5 }, 5, 0)]
-    public void Test_9_7_CountOver(int[] numbers, int threshold, int expected)
+    [InlineData("Hello, World", "World", true)]
+    [InlineData("Hello, World", "C#", false)]
+    [InlineData("Hello, World", "Hello", true)]
+    public void Test_9_5_Contains(string text, string keyword, bool expected)
     {
-        Assert.Equal(expected, Exercises.Problem9_7_CountOver(numbers, threshold));
+        Assert.Equal(expected, Exercises.Problem9_5_Contains(text, keyword));
     }
 
-    // ===== 問題 9-8: クエリ構文 =====
+    // ===== 問題 9-6: 曜日（日本語） =====
 
     [Fact]
-    public void Test_9_8_FilterByLengthDescending()
+    public void Test_9_6_Monday()
     {
-        string[] words = { "cat", "elephant", "ox", "dog", "hippopotamus" };
-        Assert.Equal(new[] { "hippopotamus", "elephant" }, Exercises.Problem9_8(words, 4));
-    }
-
-    [Fact]
-    public void Test_9_8_MultipleSameLengthDescending()
-    {
-        string[] result = Exercises.Problem9_8(new[] { "hi", "hello", "hey" }, 3);
-        Assert.Equal(new[] { "hello", "hey" }, result);
+        Assert.Equal("月曜日", Exercises.Problem9_6(new DateTime(2024, 1, 1)));
     }
 
     [Fact]
-    public void Test_9_8_NoneMatch()
+    public void Test_9_6_Sunday()
     {
-        Assert.Empty(Exercises.Problem9_8(new[] { "a", "bb", "ccc" }, 5));
-    }
-
-    // ===== 問題 9-9: GroupBy =====
-
-    [Fact]
-    public void Test_9_9_GroupByFirstChar()
-    {
-        string[] words = { "apple", "ant", "banana", "bear", "cat" };
-        var result = Exercises.Problem9_9(words);
-        Assert.Equal(3, result.Count);
-        Assert.Equal(2, result['a']);
-        Assert.Equal(2, result['b']);
-        Assert.Equal(1, result['c']);
+        Assert.Equal("日曜日", Exercises.Problem9_6(new DateTime(2024, 1, 7)));
     }
 
     [Fact]
-    public void Test_9_9_AllSameFirstChar()
+    public void Test_9_6_AllDaysOfWeek()
     {
-        var result = Exercises.Problem9_9(new[] { "alpha", "arrow", "ant" });
-        Assert.Single(result);
-        Assert.Equal(3, result['a']);
+        Assert.Equal("月曜日", Exercises.Problem9_6(new DateTime(2024, 1, 1)));
+        Assert.Equal("火曜日", Exercises.Problem9_6(new DateTime(2024, 1, 2)));
+        Assert.Equal("水曜日", Exercises.Problem9_6(new DateTime(2024, 1, 3)));
+        Assert.Equal("木曜日", Exercises.Problem9_6(new DateTime(2024, 1, 4)));
+        Assert.Equal("金曜日", Exercises.Problem9_6(new DateTime(2024, 1, 5)));
+        Assert.Equal("土曜日", Exercises.Problem9_6(new DateTime(2024, 1, 6)));
+        Assert.Equal("日曜日", Exercises.Problem9_6(new DateTime(2024, 1, 7)));
+    }
+
+    // ===== 問題 9-7: 日付の差分 =====
+
+    [Fact]
+    public void Test_9_7_DaysInSameMonth()
+    {
+        Assert.Equal(9, Exercises.Problem9_7(new DateTime(2024, 1, 1), new DateTime(2024, 1, 10)));
     }
 
     [Fact]
-    public void Test_9_9_AllDifferentFirstChar()
+    public void Test_9_7_AcrossMonths()
     {
-        var result = Exercises.Problem9_9(new[] { "zoo", "yak", "xray" });
-        Assert.Equal(3, result.Count);
-        Assert.Equal(1, result['z']);
-        Assert.Equal(1, result['y']);
-        Assert.Equal(1, result['x']);
+        Assert.Equal(60, Exercises.Problem9_7(new DateTime(2024, 1, 1), new DateTime(2024, 3, 1)));
+    }
+
+    [Fact]
+    public void Test_9_7_SameDay()
+    {
+        Assert.Equal(0, Exercises.Problem9_7(new DateTime(2024, 5, 1), new DateTime(2024, 5, 1)));
+    }
+
+    [Fact]
+    public void Test_9_7_AcrossYears()
+    {
+        // 2024 年はうるう年（366 日）
+        Assert.Equal(366, Exercises.Problem9_7(new DateTime(2024, 1, 1), new DateTime(2025, 1, 1)));
+    }
+
+    // ===== 問題 9-8: 日付フォーマット =====
+
+    [Fact]
+    public void Test_9_8_FormatDate()
+    {
+        Assert.Equal("2024年3月5日", Exercises.Problem9_8(new DateTime(2024, 3, 5)));
+    }
+
+    [Fact]
+    public void Test_9_8_EndOfYear()
+    {
+        Assert.Equal("2024年12月31日", Exercises.Problem9_8(new DateTime(2024, 12, 31)));
+    }
+
+    [Fact]
+    public void Test_9_8_SingleDigitMonthAndDay()
+    {
+        Assert.Equal("2024年1月1日", Exercises.Problem9_8(new DateTime(2024, 1, 1)));
+    }
+
+    // ===== 問題 9-9: n 日後のフォーマット =====
+
+    [Fact]
+    public void Test_9_9_AddDays()
+    {
+        Assert.Equal("2024/01/31", Exercises.Problem9_9(new DateTime(2024, 1, 1), 30));
+    }
+
+    [Fact]
+    public void Test_9_9_CrossMonth()
+    {
+        Assert.Equal("2024/02/01", Exercises.Problem9_9(new DateTime(2024, 1, 31), 1));
+    }
+
+    [Fact]
+    public void Test_9_9_ZeroDays()
+    {
+        Assert.Equal("2024/01/01", Exercises.Problem9_9(new DateTime(2024, 1, 1), 0));
+    }
+
+    [Fact]
+    public void Test_9_9_CrossYear()
+    {
+        Assert.Equal("2025/01/01", Exercises.Problem9_9(new DateTime(2024, 12, 31), 1));
     }
 }

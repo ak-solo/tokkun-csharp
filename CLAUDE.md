@@ -64,7 +64,8 @@ tokkun-csharp/
 | chapter06 | メソッド | 戻り値あり/なし、引数、ref、bool 返し |
 | chapter07 | クラスⅠ | フィールド、プロパティ、コンストラクタ、オーバーロード |
 | chapter08 | クラスⅡ | 継承、オーバーライド、ポリモーフィズム |
-| chapter09 | LINQ | Where、Select、OrderBy、GroupBy、クエリ構文 |
+| chapter09 | 文字列・日付操作 | Trim/ToUpper/Replace/Split、DateTime、TimeSpan、フォーマット |
+| chapter10 | LINQ | Where、Select、OrderBy、GroupBy、クエリ構文 |
 
 ---
 
