@@ -17,7 +17,7 @@ public class Exercises
     // 問題 9-3: CSV 文字列を分割して各要素をトリムした配列を返す
     public static string[] Problem9_3(string csv)
     {
-        string[] values = csv.Split(",");
+        string[] values = csv.Split(',');
         for (int i = 0; i < values.Length; i++)
         {
             values[i] = values[i].Trim();
@@ -69,7 +69,7 @@ public class Exercises
             case DayOfWeek.Sunday:
                 return "日曜日";
             default:
-                return string.Empty;
+                throw new ArgumentOutOfRangeException(nameof(date));
         }
     }
 
