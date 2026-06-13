@@ -13,7 +13,8 @@
         "ms-dotnettools.vscode-dotnet-pack",
         "ms-dotnettools.csharp",
         "ms-dotnettools.csdevkit",
-        "formulahendry.dotnet-test-explorer"
+        "formulahendry.dotnet-test-explorer",
+        "shd101wyy.markdown-preview-enhanced"
       ],
       "settings": {
         "dotnet.defaultSolution": "tokkun-csharp.sln",
