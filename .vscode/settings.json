@@ -2,5 +2,8 @@
   "extensions.ignoreRecommendations": true,
   "dotnet.defaultSolution": "tokkun-csharp.sln",
   "dotnetAcquisitionExtension.existingSdkPath": "/usr/share/dotnet",
-  "dotnet-test-explorer.testProjectPath": "tests/**/*.csproj"
+  "dotnet-test-explorer.testProjectPath": "tests/**/*.csproj",
+  "workbench.editorAssociations": {
+    "*.md": "markdown-preview-enhanced"
+  }
 }
