@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="165" viewBox="0 0 260 165">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+  <text x="130" y="20" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" fill="#555">入力（引数）</text>
+  <line x1="130" y1="30" x2="130" y2="53" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="25" y="55" width="210" height="44" rx="4" fill="#d5e8d4" stroke="#82b366" stroke-width="1.5"/>
+  <text x="130" y="77" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">メソッドの処理</text>
+  <line x1="130" y1="102" x2="130" y2="125" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="130" y="140" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" fill="#555">出力（戻り値）</text>
+</svg>

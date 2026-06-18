@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="195" viewBox="0 0 420 195">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+  <!-- Animal base class box -->
+  <rect x="100" y="10" width="220" height="60" rx="4" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5"/>
+  <line x1="100" y1="38" x2="320" y2="38" stroke="#9673a6" stroke-width="1"/>
+  <text x="210" y="24" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">Animal（基底クラス）</text>
+  <text x="210" y="52" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="11" fill="#555">Name, Age, ShowProfile()</text>
+  <!-- Arrows to derived classes -->
+  <line x1="210" y1="70" x2="90" y2="123" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="210" y1="70" x2="330" y2="123" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Cat derived class box -->
+  <rect x="15" y="125" width="150" height="55" rx="4" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5"/>
+  <line x1="15" y1="152" x2="165" y2="152" stroke="#6c8ebf" stroke-width="1"/>
+  <text x="90" y="139" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">Cat（派生）</text>
+  <text x="90" y="165" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="11" fill="#555">Sleep()</text>
+  <!-- Dog derived class box -->
+  <rect x="255" y="125" width="150" height="55" rx="4" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5"/>
+  <line x1="255" y1="152" x2="405" y2="152" stroke="#6c8ebf" stroke-width="1"/>
+  <text x="330" y="139" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">Dog（派生）</text>
+  <text x="330" y="165" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="11" fill="#555">Run()</text>
+</svg>
