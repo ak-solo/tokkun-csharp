@@ -29,13 +29,7 @@ public class Dog
 
 **継承**を使うと、共通部分を**基底クラス（親クラス）**に一か所だけ書き、各クラス固有の部分だけを**派生クラス（子クラス）**に追加できます。
 
-```
-        Animal（基底クラス）
-        Name, Age, ShowProfile()
-           ↙            ↘
-    Cat（派生）       Dog（派生）
-    Sleep()          Run()
-```
+![継承の関係](images/ch08-inheritance.svg)
 
 この関係を「Cat は Animal の一種（Cat is-a Animal）」と表現します。継承が自然に使えるのは、この「is-a 関係」が成立するときです。
 
