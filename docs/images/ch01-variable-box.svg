@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="90" viewBox="0 0 290 90">
+  <rect x="20" y="15" width="80" height="40" rx="4" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5"/>
+  <text x="60" y="35" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">10</text>
+  <text x="108" y="35" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="11" fill="#555">← 中身（値）</text>
+  <text x="60" y="70" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">x</text>
+  <text x="108" y="70" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="11" fill="#555">← 箱の名前（変数名）</text>
+</svg>

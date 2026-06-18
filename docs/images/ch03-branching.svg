@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="200" viewBox="0 0 380 200">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+  <text x="190" y="20" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" fill="#555">条件を判定</text>
+  <line x1="190" y1="30" x2="190" y2="53" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="75" y="55" width="230" height="40" rx="4" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5"/>
+  <text x="190" y="75" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">条件が真？</text>
+  <line x1="190" y1="95" x2="80" y2="145" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="190" y1="95" x2="300" y2="145" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="55" y="160" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="12" fill="#333">true のとき</text>
+  <text x="55" y="178" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">処理 A</text>
+  <text x="325" y="160" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="12" fill="#333">false のとき</text>
+  <text x="325" y="178" text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#333">処理 B</text>
+</svg>
